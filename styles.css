@@ -10,12 +10,34 @@ body {
     display: flex;
 }
 
+
+
 .col {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+.change {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+p {
+    align-self: center;
+    position: absolute;
+    bottom: 50px;
+    transition: font-size 0.3s;
+}
+
+p:hover {
+    cursor: pointer;
+    font-size: 1.1rem;
 }
 
 .col h2 {
@@ -37,6 +59,7 @@ body {
     background: transparent;
     transition: font-size 0.3s;
 }
+
 
 .col button:hover {
     border: none;

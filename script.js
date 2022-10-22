@@ -2,8 +2,9 @@
 
 const colums = document.querySelectorAll('.col');
 
-document.addEventListener('keydown', e => {
-    if (e.code.toLowerCase() === 'space') {
+document.addEventListener('click', event => {
+    let target = event.target;
+    if (target.tagName.toLowerCase() === 'p') {
         setRandomColors();
     }
 })
@@ -41,7 +42,8 @@ const setRandomColors = (check) => {
     colums.forEach((col, index) => {
         const text = col.querySelector('h2');
         const locker = col.querySelector('button');
-        const lock = locker.querySelector('i').classList.contains('fa-lock')
+        const lock = locker.querySelector('i').classList.contains('fa-lock');
+        const change = col.querySelector('p');
 
         if (lock) {
             colors.push(text.textContent)
@@ -59,7 +61,7 @@ const setRandomColors = (check) => {
 
         text.textContent = color;
         col.style.background = color;
-        setTextColor(text, color, locker);
+        setTextColor(text, color, locker, index, change);
     })
 
     updateHash(colors);
@@ -69,10 +71,13 @@ const copyColor = (text) => {
     navigator.clipboard.writeText(text)
 }
 
-const setTextColor = (text, color, locker) => {
+const setTextColor = (text, color, locker, index, change) => {
     const luminance = chroma(color).luminance()
     text.style.color = luminance > 0.5 ? 'black' : 'white'
     locker.style.color = text.style.color
+    if(index === 2) {
+        change.style.color = text.style.color;
+    }
 }
 
 const updateHash = (colors = []) => {
